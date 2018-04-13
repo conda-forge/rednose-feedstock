@@ -3,7 +3,6 @@
 {% set compress_type = "tar.gz" %}
 {% set hash_type = "sha256" %}
 {% set hash_val = "6da77917788be277b70259edc0bb92fc6f28fe268b765b4ea88206cc3543a3e1" %}
-{% set build_num = 0 %}
 
 package:
   name: {{ name|lower }}
@@ -11,7 +10,7 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.{{ compress_type }}
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ compress_type }}
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ compress_type }}
   {{ hash_type }}: {{ hash_val }}
 
 
@@ -19,12 +18,12 @@ build:
   noarch: python
   preserve_egg_dir: True
   number: 0
-  script: python setup.py install --single-version-externally-managed --record=record.txt
+  script: python -m pip install --no-deps --ignore-installed .
 
 requirements:
   build:
     - python
-    - setuptools
+    - pip
 
   run:
     - python
@@ -41,10 +40,10 @@ test:
 
 about:
   home: https://github.com/JBKahn/rednose
-  # license_file: No license included, number of clauses not specified, no manifest - see https://github.com/JBKahn/rednose/issues/18
-  license: BSD
-  summary: 'coloured output for nosetests'
-  license_family: BSD
+  license_file: LICENSE
+  license: MIT
+  summary: 'pretty output formatter for python-nosetests'
+  license_family: MIT
   dev_url: https://github.com/JBKahn/rednose
 
 extra:
