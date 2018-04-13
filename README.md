@@ -3,11 +3,11 @@ About rednose
 
 Home: https://github.com/JBKahn/rednose
 
-Package license: BSD
+Package license: MIT
 
 Feedstock license: BSD 3-Clause
 
-Summary: coloured output for nosetests
+Summary: pretty output formatter for python-nosetests
 
 
 
