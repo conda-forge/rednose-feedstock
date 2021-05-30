@@ -1,28 +1,23 @@
 {% set name = "rednose" %}
-{% set version = "1.2.3" %}
-{% set compress_type = "tar.gz" %}
-{% set hash_type = "sha256" %}
-{% set hash_val = "d0c88a722ef98d731e2d19dc33969b7bcb0368632fc87d3401b871b24ab7a587" %}
-{% set build_num = 1 %}
+{% set version = "1.3.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.{{ compress_type }}
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ compress_type }}
-  {{ hash_type }}: {{ hash_val }}
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 6da77917788be277b70259edc0bb92fc6f28fe268b765b4ea88206cc3543a3e1
 
 
 build:
   noarch: python
-  preserve_egg_dir: True
-  number: {{ build_num }}
-  script: python setup.py install --single-version-externally-managed --record=record.txt
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
-  build:
+  host:
+    - pip
     - python >=3.6
     - setuptools
 
@@ -35,16 +30,18 @@ requirements:
 test:
   imports:
     - test_files
-
+  commands:
+    - pip check
   requires:
     - six ==1.10.0
+    - pip
 
 about:
   home: https://github.com/JBKahn/rednose
   license_file: LICENSE
-  license: BSD
+  license: MIT
   summary: 'coloured output for nosetests'
-  license_family: BSD
+  license_family: MIT
   dev_url: https://github.com/JBKahn/rednose
 
 extra:
