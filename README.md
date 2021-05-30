@@ -3,7 +3,7 @@ About rednose
 
 Home: https://github.com/JBKahn/rednose
 
-Package license: BSD
+Package license: MIT
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/rednose-feedstock/blob/master/LICENSE.txt)
 
