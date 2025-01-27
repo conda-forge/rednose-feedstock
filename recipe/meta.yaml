@@ -33,7 +33,6 @@ test:
   commands:
     - pip check
   requires:
-    - six ==1.10.0
     - pip
     - python {{ python_min }}
 
