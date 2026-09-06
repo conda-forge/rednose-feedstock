@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: rednose
+  version: "1.3.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 6da77917788be277b70259edc0bb92fc6f28fe268b765b4ea88206cc3543a3e1
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - setuptools
+    - python-termstyle >=0.1.7
+    - colorama
+
+tests:
+  - python:
+      imports:
+        - test_files
+      pip_check: true
+      python_version:
+        - ${{ python_min }}
+        - "*"
+
+about:
+  license_file: LICENSE
+  license: MIT
+  summary: coloured output for nosetests
+  homepage: https://github.com/JBKahn/rednose
+  repository: https://github.com/JBKahn/rednose
+
+extra:
+  recipe-maintainers:
+    - pmlandwehr
+    - jan-janssen
